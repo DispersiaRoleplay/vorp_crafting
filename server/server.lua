@@ -332,19 +332,19 @@ local function scan_crafting_refs()
 
     -- Logs
     for nm in pairs(missingDB) do
-        print(("^3[script:vorp_crafting]^1 [crafting] missed item in DB: ^7%s"):format(nm))
+        print(("^1missed item in DB: ^7%s"):format(nm))
     end
     for nm in pairs(missingIMG) do
-        print(("^3[script:vorp_crafting]^6 [crafting] item has no PNG: ^7%s"):format(nm))
+        print(("^6item has no PNG: ^7%s"):format(nm))
     end
     for _, rec in ipairs(malformedReward) do
-        print(("^3[script:vorp_crafting]^1 [crafting] malformed reward (empty name) in recipe: ^7%s"):format(rec))
+        print(("^1malformed reward (empty name) in recipe: ^7%s"):format(rec))
     end
 
     local cDB, cIMG = 0, 0
     for _ in pairs(missingDB) do cDB = cDB + 1 end
     for _ in pairs(missingIMG) do cIMG = cIMG + 1 end
-    print(("^2[script:vorp_crafting]^7 scan complete. Missing in DB: ^1%d^7, missing PNG: ^6%d^7."):format(cDB, cIMG))
+    print(("^7scan complete. Missing in DB: ^1%d^7, missing PNG: ^6%d^7."):format(cDB, cIMG))
 end
 
 -- run once on start (give DB adapter a fair chance to initialize)
