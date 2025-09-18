@@ -251,7 +251,13 @@ createApp({
         this.quantity = value
     },
     closeView() {
+      // hard-close everything
+      this.showInput = false;
+      this.activeCraftable = null;
+      this.desc.show = false;
+      this.currentRoute = 'home';
       this.visible = false;
+
       fetch(`https://${GetParentResourceName()}/vorp-craft-close`, {
         method: 'POST'
       })
