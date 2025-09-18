@@ -67,6 +67,13 @@ h2 {
   overflow-y: auto; 
 }
 
+.item-icon {
+  max-height: 48px;
+  max-width: 48px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 2px;

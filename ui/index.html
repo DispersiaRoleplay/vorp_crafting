@@ -21,6 +21,7 @@
             <div class="craftable-wrap" v-for="(cata, index) in Object.keys(consumables)" :key="'catitems'+index"   v-show="currentRoute == cata" >
               <div class="bcc-button" v-for="(it, index) in consumables[cata]" @click="handleItemClick(it)" @mouseover="toggleDesc(it, true)" @mouseleave="toggleDesc(null, false)">
                 <div class="button-content">
+                  <img :src="getItemImg(it.Reward[0].name)" class="item-icon">
                   <div class="text">{{it.Text}}</div>
                   <div class="subtext" v-if="it.SubText">{{it.SubText}}</div>
                 </div>

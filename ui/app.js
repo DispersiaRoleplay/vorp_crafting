@@ -131,6 +131,9 @@ createApp({
     }
   },
   methods: {
+    getItemImg(name) {
+      return `nui://vorp_inventory/html/img/items/${name}.png`;
+    },
     onMessage(event) {
       switch(event.data.type) {
         case "vorp-craft-open":
