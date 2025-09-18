@@ -34,9 +34,10 @@
           </div>
 
           <div class="ing-tile" v-if="desc.show && style.descriptionsidebar == true">
-            <h2>Ingredients</h2>
-            <div v-for="(ing, index) in Ingredients" :key="'desc'+index">
-              {{ing}}
+            <h2>{{ language?.IngredientsHeader || 'Ingredients' }}</h2>
+            <div class="ing-row" v-for="(e, index) in IngredientEntries" :key="'ing'+index">
+              <img class="ing-icon" :src="e.img" @error="($event) => { $event.target.style.display = 'none' }">
+              <span class="ing-text">x{{ e.count }} {{ e.name }}</span>
             </div>
           </div>
         </div>

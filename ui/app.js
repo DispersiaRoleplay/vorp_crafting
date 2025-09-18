@@ -125,10 +125,42 @@ createApp({
     InputCraftText() {
       return  this.activeCraftable.Text && this.language.InputHeader ? this.language.InputHeader.replace('{{msg}}', this.activeCraftable.Text) : ''
     },
-    Ingredients() {
-      if (this.desc.show == false) return ''
-      return this.desc.data.Desc.replace('Recipe: ', '').replace('Recipe ', '').split(',')
-    }
+    IngredientEntries() {
+      if (!this.desc.show || !this.desc.data) return [];
+      const it = this.desc.data;
+
+      // 1) Advantage of the structure with Config.Crafting
+      if (Array.isArray(it.Items) && it.Items.length > 0) {
+        return it.Items.map(x => {
+          const name = (x.name || '').trim();
+          const count = Number(x.count || 1);
+          return {
+            name,
+            count,
+            img: this.getItemImg(name)
+          };
+        });
+      }
+
+      // 2) Fallback: parse the string Desc ("Recipe: 1x Meat, 1x Salt")
+      const raw = (it.Desc || '')
+        .replace('Recipe:','')
+        .replace('Recipe','')
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+
+      return raw.map(t => {
+        const m = t.match(/(\d+)x\s*(.+)/i);
+        const count = m ? parseInt(m[1], 10) : 1;
+        const name = (m ? m[2] : t).trim();
+        return {
+          name,
+          count,
+          img: this.getItemImg(name)
+        };
+      });
+    },
   },
   methods: {
     getItemImg(name) {

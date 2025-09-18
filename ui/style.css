@@ -73,6 +73,23 @@ h2 {
   margin-right: 8px;
   vertical-align: middle;
 }
+.ing-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.ing-icon {
+  max-width: 28px;
+  max-height: 28px;
+  display: inline-block;
+}
+
+.ing-text {
+  line-height: 1.2;
+  font-weight: 600;
+}
 
 /* width */
 ::-webkit-scrollbar {
